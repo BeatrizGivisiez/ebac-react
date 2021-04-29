@@ -1,5 +1,5 @@
 # Construindo uma aplicação front-end com React.js
-Esse projeto foi desenvolvido junto da - [EBAC](https://ebaconline.com.br/webinars/workshop-programming-2021-04-27-28-29) Escola Britânica de Artes Criativas & Tecnologia. 
+Esse projeto foi desenvolvido junto da [EBAC](https://ebaconline.com.br/webinars/workshop-programming-2021-04-27-28-29) Escola Britânica de Artes Criativas & Tecnologia. 
 <br>Instrutor: Daniel Castro @danieldcs.com
 
 ## Introdução 
@@ -14,13 +14,7 @@ Esse projeto foi desenvolvido junto da - [EBAC](https://ebaconline.com.br/webina
 
 
 ## Fundamentos
-* State.
-* Ciclo de vida.
-* Manipulação de Eventos.
-* Estilização (CSS).
-* Renderização Condicional.
-
-### JSX
+### JSX:
 É uma extensão de sintaxe do JavaScript (JavaScript Syntax eXtension) que nos permite escrever HTML dentro do JavaScript.
 * Ajuda a descrever como uma UI deve ser.
 * Lembra uma linguagem de template, mas poder do JS.
@@ -29,18 +23,17 @@ Esse projeto foi desenvolvido junto da - [EBAC](https://ebaconline.com.br/webina
 * Pode conter elementos filhos.
 * Ajuda a prevenir ataques de injeção XSS.
 * Você pode usar React sem JSX.
-
 #### Exemplo A:
 ```javascript
-const element = <h1>Olá, Mundo!</h1>
+const element = <h1>Hello, world!</h1>
 ```
 #### Exemplo B:
 ```javascript
 const name = 'Beatriz Givisiez';
-const element = <h1>Olá, {name}</h1>;
+const element = <h1>Hello, {name}</h1>;
 ```
 
-### componentes, Props e Children
+### Componentes, Props e Children:
 Componentes representam a UI/Interface (por exemplo uma tabela, botão, video e todo esse pequenos fragmentos/interface eles são meus componentes) e o props é o atributos deste componente.
 * Um componente pode retornar uma ou mais partes da UI.
 * Um componente é uma função javascript que sempre retorna um elemento.
@@ -57,48 +50,72 @@ Componentes representam a UI/Interface (por exemplo uma tabela, botão, video e 
 * As props são atributos passados da declaração do componente.
 * Um atributo é acessível na variável props.
 * Todo componente uma propriedade chamada children.
+#### Exemplo de componente de função:
+```javascript
+funciton Welcome(props){
+    return <h1>Hello, {props.name}</h1>;
+}
+const elemento = <Welcome name="Beatriz">;
+```
+#### Exemplo de componente de função com children e props:
+```javascript
+function Welcome(props){
+    return<h1>{children}, {props.name}</h1>;
+}
+const elemento = <Welcome name="Beatriz">Hello</Welcome>;
+```
+#### Exemplo de componente de classe com estado:
+```jsx
+class Clock extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+    render(){
+        return {
+            <div>
+                <h1>Hello, world!</h1>
+                <h2>It is { this.state.date.toLocateTimeString() }</h2>
+            </div>
+        };
+    }
+}
+```
+
+### State:
+O state é uma variável que armazena o estado de alguma informação.
+* O estado é similar à props, mas privado e somente controlado pelo componente.
+* O state não deve ser modificiado diretamente, utilize a função this.setState().
+* Atualizações de state pode ser arríncronas. O React pode agrupar chamadas para performance.
+* Não confie no valor de state para calcular o valor de um próximo state.
+
+### Ciclo de vida:
+São métodos reservados para controlar do ciclo de vida do componente:
+* `componentWillMount:` antes do primeiro render.
+* `componentDidMount:` após primeiro render, geralmente para chamadas de assíncronas.
+* `componentWillUpdate:` executa antes de atualização de um componente.
+* `componentDidUpdate:` executa depois da atualização de um componente.
+* `compenentWillReceiveProps:` quando as props que o componente recebe são atualizadas. 
+* `componentWillUnmount:` executa quando o ciclo de vida de um componente termina e ele vai ser removido do DOM. É muito usado para remover setTimeouts e setIntervals que foram adicionados. 
+* `shouldComponentUpdate:` deve retornar true/false. Esse valor vai dizer que se o componente deve ser atualizado ou não, com base em certos parâmetros. Geralmente é usado para resolver questões de performace. 
+
+### Manipulação de Eventos:
+Eventos no React são muito similares a eventos no HTML (DOM).
+* São nomeados usando camelCase, ao invés de letras minúsculas.
+* Com JSX você passa uma função como manipulador de eventos, ao invés de um texto.
+* Com HTML, retorna false em um link para evitar a abertura de uma nova página.
+* Eventos: onClick, onChange
+<a href="#" onClick=(handleClick)>...</a>
+
+### Estilização (CSS):
+### Renderização Condicional.
 
 
 
+### `yarn`
+`npm install -g yarn`<br>
+`npm start`
 
-
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
@@ -129,3 +146,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Reforçando estudos de JS.
+* Variáveis
+* Tipos de dados
+* Operadores
+* Funções
+* Condicionais
+* Repetição
+* Manipulação de erro
+* JS Assíncrono
+* Map, Filter, Reduce
